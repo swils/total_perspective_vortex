@@ -8,7 +8,7 @@ require("stylesheets/main.scss");
 
 
 // External libraries.
-const three = require("three");
+const THREE = require("three");
 
 
 // Local modules.
@@ -19,10 +19,11 @@ let scene, camera, renderer, geometry, material, space;
 
 
 const buildGeometry = (galaxies) => {
-  geometry = new three.Geometry();
+  geometry = new THREE.Geometry();
   _.forEach(galaxies, ({ x, y, z }) => {
-    geometry.vertices.push(new three.Vector3(x, y, z));
+    geometry.vertices.push(new THREE.Vector3(x, y, z));
   });
+
   return geometry;
 };
 
@@ -37,18 +38,25 @@ const render = function () {
 
 
 const init = () => {
-  scene = new three.Scene();
-  camera = new three.PerspectiveCamera(120, window.innerWidth / window.innerHeight, 1.0, 10000);
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1.0, 10000);
 
-  renderer = new three.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  material = new three.PointsMaterial({
-    color: 0xf0f0f0,
-    size: 0.5
+  let uniforms = {
+    color: {
+      type: "c",
+      value: new THREE.Color(0xd0d0ff)
+    }
+  };
+  material = new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    fragmentShader: "uniform vec3 color; void main() { gl_FragColor = vec4(color, 0.5); }",
+    transparent: true
   });
-  space = new three.Points(buildGeometry(galaxies), material);
+  space = new THREE.Points(buildGeometry(galaxies), material);
 
   scene.add(space);
 
