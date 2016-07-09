@@ -6,8 +6,8 @@ module.exports = {
     front: [ __dirname + "/front/entry.js" ]
   },
   output: {
-    path: __dirname + "/static",
-    publicPath: '/static/',
+    path: __dirname + "/static/bundle",
+    publicPath: '/static/bundle/',
     filename: "[name].bundle.js",
     sourceMapFilename: "[name].bundle.map"
   },

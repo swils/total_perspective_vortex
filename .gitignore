@@ -1,4 +1,4 @@
 .idea
 node_modules
-static/front.bundle.js
+static/bundle/front.bundle.js
 data
