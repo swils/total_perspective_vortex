@@ -3,7 +3,7 @@ import sqlite3
 from flask import g
 
 
-DATABASE = 'data/galaxies.db'
+DATABASE = 'data/galaxies.sqlite'
 
 
 def get_db():
