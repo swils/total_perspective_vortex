@@ -37,7 +37,7 @@ const init = (galaxies) => {
   console.log(galaxies.length);
 
   scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1.0, 10000);
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1.0, 10000);
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -58,18 +58,16 @@ const init = (galaxies) => {
 
   scene.add(space);
 
-  camera.position.z = 1000;
+  camera.position.z = 5000;
 
   render();
 };
 
 
-const load = () => {
-  console.log("loading data");
-  $.get('/galaxies').done(({ galaxies }) => {
-    init(galaxies);
-  });
+const bootstrap = () => {
+  const loader = require("loader");
+  loader.load().then((galaxies) => { console.log(galaxies.length); });
 };
 
 
-window.TotalPerspectiveVortex = { load };
+window.TotalPerspectiveVortex = { bootstrap };

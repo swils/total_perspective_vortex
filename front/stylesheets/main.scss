@@ -1,10 +1,40 @@
+// Import font.
+@import url(http://fonts.googleapis.com/css?family=Inconsolata:400&subset=latin,latin-ext);
+
+// Import styling.
+@import "colors";
+
+
 body {
+  background-color: $solarized-base02;
+  color: $solarized-base1;
+
+  font-family: "Consolata", "Menlo", "Monaco", "Consolas", "Courier New", monospace;
+  font-size: 14px;
+
   margin: 0;
   padding: 0;
   overflow: hidden  // to fix an annoying problem of scrollbars showing.
 };
 
+
 canvas {
+  background-color: black;
   width: 100%;
   height: 100%;
 };
+
+
+.loader {
+  position: absolute;
+  width: 400px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px; /* margin is -0.5 * dimension */
+  margin-top: -25px;
+
+  .progress {
+    color: $solarized-base2;
+  }
+}
