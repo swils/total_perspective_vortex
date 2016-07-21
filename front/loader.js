@@ -28,8 +28,15 @@ const load = () => {
 
   const next = () => {
     let pct = (100.0 * first / GALAXIES).toFixed(2);
-    let progress = `<span class="progress">${pct}%</span>`;
-    $loader.html(`Loading SDSS galaxies... ${progress}`);
+    let progress =
+        `<div class="tpv-loader">
+          <div class="tpv-title">Loading galaxies...</div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" style="width: ${pct}%;">
+            </div>
+          </div>
+        </div>`;
+    $loader.html(progress);
 
     $.get('/galaxies', { first: first, size: SIZE }).done(process);
   };

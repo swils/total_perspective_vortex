@@ -4,6 +4,7 @@ require("expose?$!jquery");
 
 
 // Load styling.
+require("bootstrap-sass!bootstrap-sass.config.js");
 require("stylesheets/main.scss");
 
 
