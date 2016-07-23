@@ -1,6 +1,8 @@
 // External libraries.
 const THREE = require("three");
 
+const TrackballControls = require("trackball_controls");
+
 
 const UNIFORMS = {
   color: {
@@ -19,7 +21,7 @@ const MATERIAL = new THREE.ShaderMaterial({
 
 const render = (galaxies) => {
   const options = {
-    autoRotate: true
+    autoRotate: false
   };
 
   // Create a renderer.
@@ -39,15 +41,28 @@ const render = (galaxies) => {
   scene.add(space);
 
   // Create a camera.
-  let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1.0, 10000);
-  camera.position.z = 5000;
+  let camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1.0, 10000);
+  camera.position.z = 500;
+
+  // Trackball controls.
+  let controls = new TrackballControls(camera);
+  controls.rotateSpeed = 3.0;
+  controls.zoomSpeed = 1.2;
+  controls.panSpeed = 0.45;
 
   // Perform the actual animation.
-  const render = () => {
-    requestAnimationFrame(render);
+  const animate = () => {
+    requestAnimationFrame(animate);
+    controls.update();
     if (options.autoRotate) { space.rotation.y += 0.005; }
+  };
+
+  const render = () => {
     renderer.render(scene, camera);
   };
+
+  controls.addEventListener('change', render);
+  animate();
   render();
 };
 
