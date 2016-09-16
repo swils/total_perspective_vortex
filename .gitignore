@@ -1,2 +1,11 @@
 .idea
-static/front.bundle.js
+node_modules
+data
+
+# Compiled assets.
+static/bundle/*.bundle.js
+static/bundle/*.eot
+static/bundle/*.svg
+static/bundle/*.ttf
+static/bundle/*.woff
+static/bundle/*.woff2
